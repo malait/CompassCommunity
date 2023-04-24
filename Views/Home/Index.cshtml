@@ -1,0 +1,34 @@
+﻿@{
+    ViewData["Title"] = "Schedule Meeting";
+}
+@model MeetingScheduler.Models.ViewModel.MeetingViewModel
+<form asp-controller="Home" asp-action="ScheduleMeeting" method="post>
+<div>
+    <label class="form-label"> Meeting Title: </label>
+        <input class="form-text" asp-for="MeetingTitle" type="text" id="meetingTitle" /><br />
+
+    <label class="form-label">Start Date Time</label>
+        <input class="form-control" asp-for="MeetingStartDateTime" type="datetime-local" id="startDateTime" /><br />
+    <label class="form-label">End Date Time</label>
+        <input class="form-control" asp-for="MeetingEndDateTime" type="datetime-local" id="endDateTime" /><br />
+    <label class="form-label">Room: </label>
+    <select class="form-select" asp-for="SelectedRoom" asp-items="Model.RoomsSelectedList"></select><br />
+    <label class="form-label">Persons: </label>
+    <div class="form-group">
+        
+            <select asp-for="SelectedPersons" class="form-control" asp-items="Model.PeopleSelectedList" multiple>
+            <option value="">Persons: </option>
+        </select>
+    </div>
+<div>
+    <input class="btn btn-primary" type="submit" value="ScheduleMeeting" />
+</div>
+</form>
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            alert("@ViewBag.Message");
+        };
+    </script>
+}
